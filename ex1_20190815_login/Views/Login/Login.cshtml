@@ -1,0 +1,22 @@
+﻿@model LoginViewModel
+@*view裡面的webconfig 可以加<add namespace="ex1_20190815_login.Models" />*@
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <div><span style="color:red"> @ViewBag.Message</span></div>
+    <div>@Html.ValidationMessage("LoginError")</div>
+
+    @Html.LabelFor(x => x.Account)<span>:</span>@Html.TextBoxFor(x => x.Account, new { @placeholder = "Key your Email", type = "email" })
+    <br>
+    @Html.LabelFor(x => x.Password)<span>:</span>@Html.TextBoxFor(x => x.Password, new { type = "password" })
+    <br>
+    <input type="submit" id="sub" value="登錄">
+    <div>
+        @Html.LabelFor(x => x.Captial)<span>:@Session["captial"]</span>@Html.TextBoxFor(x => x.Captial) @Html.ValidationMessageFor(x =>x.Captial)
+    </div>
+}
